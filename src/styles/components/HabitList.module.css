@@ -1,0 +1,56 @@
+.habitList {
+  margin: 50px 2.5%;
+  width: 55%;
+}
+
+.habitList header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--title);
+  font-weight: 500;
+}
+
+.newHabitButton {
+  align-items: center;
+  background-color: var(--blue);
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+  font-weight: bold;
+  height: 30px;
+  justify-content: center;
+  width: 120px;
+}
+
+.newHabitButton:hover {
+  background-color: var(--blue-dark);
+  transition: background-color 0.2s;
+}
+
+.dayTimeWrapper {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.dayTime {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.line {
+  border: 1px solid var(--gray-line);
+}
+
+.habits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
