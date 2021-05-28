@@ -1,0 +1,147 @@
+.streakMap {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 50px 2.5%;
+  min-width: 280px;
+  width: 30%;
+}
+
+@media (max-width: 860px) {
+  .streakMap {
+    width: 70%;
+  }
+}
+
+.streakMap h2 {
+  color: var(--title);
+  font-weight: 500;
+}
+
+.streakWrapper {
+  background-color: var(--white);
+  border-radius: 5px;
+  height: 335px;
+  padding: 15px 10px;
+  margin: 10px 0px;
+  width: 100%;
+}
+
+.streakWrapper header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controlWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.monthWrapper {
+  align-items: center;
+  color: var(--title);
+  display: flex;
+  flex-direction: column;
+}
+
+.monthWrapper :first-child {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.monthWrapper :last-child {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: -5px;
+}
+
+.daysWrapper {
+  align-items: center;
+  background-color: var(--gray-line);
+  border: 5px solid var(--white);
+  border-radius: 100%;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.14);
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  justify-content: center;
+  width: 60px;
+}
+
+.daysWrapper :first-child {
+  color: var(--title);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.daysWrapper :last-child {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-top: -5px;
+}
+
+.calendar {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.weekdays {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.weekdays p {
+  width: calc(100% / 7);
+}
+
+.calendar table,
+tbody {
+  width: 100%;
+}
+
+.week {
+  width: 100%;
+}
+
+.day {
+  height: 2rem;
+  text-align: center;
+  width: calc(100% / 7);
+}
+
+.today {
+  background-color: var(--text);
+  border-radius: 1rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.completedDay {
+  background-color: var(--green);
+  border-radius: 1rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.failedDay {
+  background-color: var(--red);
+  border-radius: 1rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.halfwayDay {
+  background-color: #f5b62d;
+  border-radius: 1rem;
+  color: var(--white);
+  font-weight: 600;
+}
