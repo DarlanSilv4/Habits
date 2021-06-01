@@ -12,6 +12,31 @@
   width: 365px;
 }
 
+@media (min-width: 1450px) {
+  .card {
+    flex-grow: 1;
+    margin: 10px 15px 0 15px;
+  }
+}
+
+@media (max-width: 1350px) {
+  .card {
+    width: 340px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .card {
+    width: 325px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: 100%;
+  }
+}
+
 .iconWrapper {
   padding: 2%;
   background-color: var(--white);
@@ -27,8 +52,8 @@
 }
 
 .card p {
-  width: 200px;
   text-align: center;
+  width: 50%;
 }
 
 .buttonWrapper {
