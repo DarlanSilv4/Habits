@@ -3,6 +3,14 @@
   width: 55%;
 }
 
+@media (max-width: 860px) {
+  .habitList {
+    margin: 50px 5%;
+    min-width: 288px;
+    width: 100%;
+  }
+}
+
 .habitList header {
   align-items: center;
   display: flex;
