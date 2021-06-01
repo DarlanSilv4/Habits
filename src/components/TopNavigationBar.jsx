@@ -4,9 +4,9 @@ function TopNavigationBar() {
   return (
     <div className={styles.topNavigationBar}>
       <div className={styles.wrapper}>
-        <a href="/" title="menu" className={styles.topbarButton}>
+        <button title="menu" className={styles.topbarButton}>
           <img src="./icons/menu.svg" alt="menu" />
-        </a>
+        </button>
 
         <a href="/" title="Homepage" className={styles.logo}>
           <img src="./icons/habit-logo.svg" alt="menu" />
@@ -24,9 +24,15 @@ function TopNavigationBar() {
       </div>
 
       <div className={styles.wrapper}>
-        <a href="/" title="settings" className={styles.topbarButton}>
+        <button
+          title="search"
+          className={`${styles.topbarButton} ${styles.topbarSearchButton}`}
+        >
+          <img src="./icons/search.svg" alt="search" />
+        </button>
+        <button title="settings" className={styles.topbarButton}>
           <img src="./icons/settings.svg" alt="settings" />
-        </a>
+        </button>
         <img
           className={styles.profilePicture}
           alt="profile"
