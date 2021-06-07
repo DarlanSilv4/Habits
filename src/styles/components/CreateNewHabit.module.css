@@ -1,0 +1,260 @@
+.overlay {
+  align-items: center;
+  background-color: rgba(33, 33, 33, 0.5);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.createNewHabit {
+  background-color: var(--background);
+  border-radius: 10px;
+  height: auto;
+  max-width: 790px;
+  width: 50%;
+}
+
+.createNewHabit p {
+  font-weight: 600;
+}
+
+.createNewHabit header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.createNewHabit h2 {
+  color: var(--title);
+}
+
+.line {
+  background-color: var(--gray-line);
+  height: 2px;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  height: 75%;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+}
+
+.iconWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 25%;
+}
+
+.icon {
+  background: #dcdde0;
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+}
+
+.addIcon {
+  align-items: center;
+  background-color: var(--background);
+  border-radius: 100%;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  left: 55%;
+  position: absolute;
+  top: 60px;
+  width: 40px;
+}
+
+.iconWrapper p {
+  margin-top: 5px;
+}
+
+.createNewHabit form {
+  width: 70%;
+}
+
+.createNewHabit form > div {
+  margin: 20px 0px;
+}
+
+.createNewHabit input {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.14);
+  height: 30px;
+  margin-top: 5px;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+.weekDayPicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.weekDayPicker input[type="checkbox"] {
+  display: none;
+}
+
+.weekDayPicker input[type="checkbox"] + p {
+  cursor: pointer;
+  background-color: var(--white);
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.14);
+  font-size: 0.9rem;
+  font-weight: 500;
+  height: 40px;
+  margin-top: 5px;
+  padding: 10px 0;
+  text-align: center;
+  width: 40px;
+}
+
+.weekDayPicker input[type="checkbox"]:checked + p {
+  background-color: var(--blue);
+  box-shadow: none;
+  color: var(--white);
+  font-weight: 800;
+}
+
+.weekDayPicker p {
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.schedule input[type="radio"] {
+  display: none;
+}
+
+.schedule input[type="radio"] + p {
+  cursor: pointer;
+  background-color: var(--white);
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.14);
+  font-size: 0.9rem;
+  font-weight: 500;
+  height: 30px;
+  margin: 5px 10px;
+  padding: 5px 0;
+  text-align: center;
+  width: 160px;
+}
+
+.schedule input[type="radio"]:checked + p {
+  color: var(--white);
+  background-color: var(--blue);
+  box-shadow: none;
+  font-weight: 800;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.buttons button:first-child {
+  color: var(--text);
+  font-weight: 500;
+  margin: 0 15px;
+}
+
+.buttons button:last-child {
+  color: var(--white);
+  background-color: var(--blue);
+  border-radius: 0;
+  height: 2rem;
+  margin: 0 15px;
+  width: 95px;
+}
+
+@media (max-width: 1366px) {
+  .schedule input[type="radio"] + p {
+    width: 120px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .weekDayPicker {
+    width: 150px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .schedule input[type="radio"] + p {
+    width: 100px;
+  }
+}
+
+@media (max-width: 850px) {
+  .createNewHabit {
+    width: 90%;
+  }
+
+  .weekDayPicker {
+    width: 80%;
+  }
+}
+
+@media (max-width: 770px) {
+  .weekDayPicker {
+    width: 158px;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrapper {
+    align-content: center;
+    flex-direction: column;
+  }
+
+  .iconWrapper {
+    width: 90%;
+  }
+
+  .weekDayPicker {
+    width: 100%;
+  }
+
+  .createNewHabit form {
+    width: 100%;
+  }
+
+  .schedule {
+    width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .createNewHabit {
+    height: 90%;
+    overflow: scroll;
+  }
+
+  .weekDayPicker {
+    width: 150px;
+  }
+}
