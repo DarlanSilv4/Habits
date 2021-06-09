@@ -258,3 +258,12 @@
     width: 150px;
   }
 }
+
+.invalid {
+  background-color: var(--red);
+  color: var(--white);
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}

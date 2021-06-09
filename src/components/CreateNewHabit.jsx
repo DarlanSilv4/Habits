@@ -1,6 +1,61 @@
+import { useState } from "react";
 import styles from "../styles/components/CreateNewHabit.module.css";
 
 function CreateNewHabit() {
+  const [name, setName] = useState("");
+  const [daysOfTheWeek, setDaysOfTheWeek] = useState([]);
+  const [schedule, setSchedule] = useState(null);
+
+  const [invalidMessage, setInvalidMessage] = useState(null);
+
+  const habits = JSON.parse(localStorage.getItem("@habitLit")) || [];
+
+  const handleCheckbox = (value) => {
+    const daysChecked = [].concat(daysOfTheWeek);
+    const dayID = daysChecked.findIndex((day) => day === value);
+
+    //Check day
+    if (dayID === -1) {
+      daysChecked.push(value);
+      setDaysOfTheWeek(daysChecked);
+      return;
+    }
+
+    //Uncheck day
+    daysChecked.splice(dayID, 1);
+    setDaysOfTheWeek(daysChecked);
+  };
+
+  const isFormValid = ({ name, days, schedule }) => {
+    if (name.length === 0) {
+      setInvalidMessage("Name is required");
+      return false;
+    }
+    if (days.length === 0) {
+      setInvalidMessage("Days is required");
+      return false;
+    }
+    if (schedule === null) {
+      setInvalidMessage("Schedule is required");
+      return false;
+    }
+    return true;
+  };
+
+  const createNewHabit = () => {
+    const newHabit = {
+      name: name,
+      days: daysOfTheWeek,
+      schedule: schedule,
+    };
+
+    if (isFormValid(newHabit)) {
+      habits.push(newHabit);
+      localStorage.setItem("@habitLit", JSON.stringify(habits));
+      window.location.reload();
+    }
+  };
+
   return (
     <div className={styles.overlay}>
       <div className={styles.createNewHabit}>
@@ -13,6 +68,10 @@ function CreateNewHabit() {
 
         <div className={styles.line}></div>
 
+        {invalidMessage !== null ? (
+          <p className={styles.invalid}>{invalidMessage}</p>
+        ) : null}
+
         <div className={styles.wrapper}>
           <div className={styles.iconWrapper}>
             <div className={styles.icon}></div>
@@ -22,47 +81,88 @@ function CreateNewHabit() {
             <p>Choose Icon</p>
           </div>
 
-          <form>
+          <form onSubmit={(event) => event.preventDefault()}>
             <label>
               <p>Name</p>
-              <input placeholder="Ex: Reading to relax" />
+              <input
+                placeholder="Ex: Reading to relax"
+                onChange={(event) => setName(event.target.value)}
+              />
             </label>
 
             <div>
               <p>Days of the week</p>
-              <div className={styles.weekDayPicker}>
+              <div
+                className={styles.weekDayPicker}
+                onChange={() => setInvalidMessage(null)}
+              >
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("sun");
+                    }}
+                  />
                   <p>Sun</p>
                 </label>
 
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("mon");
+                    }}
+                  />
                   <p>Mon</p>
                 </label>
 
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("tue");
+                    }}
+                  />
                   <p>Tue</p>
                 </label>
 
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("wed");
+                    }}
+                  />
                   <p>Wed</p>
                 </label>
 
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("thu");
+                    }}
+                  />
                   <p>Thu</p>
                 </label>
 
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("fri");
+                    }}
+                  />
                   <p>Fri</p>
                 </label>
 
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      handleCheckbox("sat");
+                    }}
+                  />
                   <p>Sat</p>
                 </label>
               </div>
@@ -70,32 +170,57 @@ function CreateNewHabit() {
 
             <div>
               <p>Schedule</p>
-              <div className={styles.schedule}>
+              <div
+                className={styles.schedule}
+                onChange={() => setInvalidMessage(null)}
+              >
                 <label>
-                  <input type="radio" />
+                  <input
+                    checked={schedule === "anytime"}
+                    name="anytime"
+                    onChange={(e) => setSchedule(e.target.name)}
+                    type="radio"
+                  />
                   <p>Anytime</p>
                 </label>
 
                 <label>
-                  <input type="radio" />
+                  <input
+                    checked={schedule === "morning"}
+                    name="morning"
+                    onChange={(e) => setSchedule(e.target.name)}
+                    type="radio"
+                  />
                   <p>Morning</p>
                 </label>
 
                 <label>
-                  <input type="radio" />
+                  <input
+                    checked={schedule === "afternoon"}
+                    name="afternoon"
+                    onChange={(e) => setSchedule(e.target.name)}
+                    type="radio"
+                  />
                   <p>Afternoon</p>
                 </label>
 
                 <label>
-                  <input type="radio" />
+                  <input
+                    checked={schedule === "night"}
+                    name="night"
+                    onChange={(e) => setSchedule(e.target.name)}
+                    type="radio"
+                  />
                   <p>Night</p>
                 </label>
               </div>
             </div>
 
             <div className={styles.buttons}>
-              <button>Cancel</button>
-              <button>Create</button>
+              <button type="button">Cancel</button>
+              <button type="button" onClick={() => createNewHabit()}>
+                Create
+              </button>
             </div>
           </form>
         </div>
