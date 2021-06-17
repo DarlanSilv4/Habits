@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useHabits } from "../contexts/HabitsContext";
 import styles from "../styles/components/CreateNewHabit.module.css";
+import { addHabits } from "../database.js";
 
 function CreateNewHabit() {
   const [name, setName] = useState("");
@@ -8,7 +10,7 @@ function CreateNewHabit() {
 
   const [invalidMessage, setInvalidMessage] = useState(null);
 
-  const habits = JSON.parse(localStorage.getItem("@habitLit")) || [];
+  const { handleNewHabitModalOpen } = useHabits();
 
   const handleCheckbox = (value) => {
     const daysChecked = [].concat(daysOfTheWeek);
@@ -47,12 +49,12 @@ function CreateNewHabit() {
       name: name,
       days: daysOfTheWeek,
       schedule: schedule,
+      concluded: null,
     };
 
     if (isFormValid(newHabit)) {
-      habits.push(newHabit);
-      localStorage.setItem("@habitLit", JSON.stringify(habits));
-      window.location.reload();
+      addHabits(newHabit);
+      handleNewHabitModalOpen(false);
     }
   };
 
@@ -61,7 +63,7 @@ function CreateNewHabit() {
       <div className={styles.createNewHabit}>
         <header>
           <h2>Create New Habit</h2>
-          <button>
+          <button onClick={() => handleNewHabitModalOpen()}>
             <img src="./icons/close.svg" alt="close" />
           </button>
         </header>
@@ -217,7 +219,9 @@ function CreateNewHabit() {
             </div>
 
             <div className={styles.buttons}>
-              <button type="button">Cancel</button>
+              <button type="button" onClick={() => handleNewHabitModalOpen()}>
+                Cancel
+              </button>
               <button type="button" onClick={() => createNewHabit()}>
                 Create
               </button>
