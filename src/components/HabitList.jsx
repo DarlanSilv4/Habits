@@ -8,23 +8,48 @@ function HabitList() {
   const { handleNewHabitModalOpen } = useHabits();
   const habits = getHabits();
 
+  const filterHabitsForToday = () => {
+    const today = new Date().getDay();
+    const weekDays = {
+      0: "sun",
+      1: "mon",
+      2: "tue",
+      3: "wed",
+      4: "thu",
+      5: "fri",
+      6: "sat",
+    };
+
+    const isHabitForToday = (habit) => {
+      return habit.days.includes(weekDays[today]);
+    };
+
+    const todayHabits = habits.filter((habit) => isHabitForToday(habit));
+
+    return todayHabits;
+  };
+
   const sortHabitsByDaytime = () => {
+    const todayHabits = filterHabitsForToday();
+
     const isCurrentDaytime = (habit, daytime) => {
       if (habit.schedule === daytime) {
         return habit;
       }
     };
 
-    const anytime = habits.filter((habit) =>
+    const anytime = todayHabits.filter((habit) =>
       isCurrentDaytime(habit, "anytime")
     );
-    const morning = habits.filter((habit) =>
+    const morning = todayHabits.filter((habit) =>
       isCurrentDaytime(habit, "morning")
     );
-    const afternoon = habits.filter((habit) =>
+    const afternoon = todayHabits.filter((habit) =>
       isCurrentDaytime(habit, "afternoon")
     );
-    const night = habits.filter((habit) => isCurrentDaytime(habit, "night"));
+    const night = todayHabits.filter((habit) =>
+      isCurrentDaytime(habit, "night")
+    );
 
     return {
       anytime: anytime,
@@ -73,7 +98,7 @@ function HabitList() {
   return (
     <div className={styles.habitList}>
       <header>
-        <h2 className={styles.title}>Habits</h2>
+        <h2 className={styles.title}>Today</h2>
         <button
           className={styles.newHabitButton}
           onClick={() => handleNewHabitModalOpen()}
