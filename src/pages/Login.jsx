@@ -15,7 +15,7 @@ export function Login() {
       </header>
       <button onClick={signInWithGoogle}>
         <img src="/icons/google-icon.svg" alt="google icon" />
-        <p>Login with Google</p>
+        <p>Sign in with Google</p>
       </button>
     </div>
   );
