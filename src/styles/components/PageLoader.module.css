@@ -1,0 +1,42 @@
+.pageLoader {
+  align-items: center;
+  background-color: var(--blue-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.pageLoader img {
+  height: 62px;
+}
+
+.pageLoader .loader {
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  border: 5px solid var(--text-highlight);
+  border-radius: 50%;
+  border-top: 5px solid var(--white);
+  height: 42px;
+  width: 42px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
