@@ -1,3 +1,5 @@
+import PageLoader from "./PageLoader";
+
 import { Route, Redirect } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebase";
@@ -11,7 +13,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     </div>;
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <PageLoader />;
   }
   if (user) {
     return <Route {...rest} render={(props) => <Component {...props} />} />;
