@@ -13,7 +13,7 @@ function AuthProvider(props) {
         setUser({
           id: uid,
           name: displayName || email,
-          avatar: photoURL || "https://i.imgur.com/xqL5hmc.jpeg",
+          avatar: photoURL || "https://i.imgur.com/ubcYxCs.jpeg",
         });
       }
     });
@@ -33,7 +33,7 @@ function AuthProvider(props) {
       setUser({
         id: uid,
         name: displayName || email,
-        avatar: photoURL || "https://i.imgur.com/xqL5hmc.jpeg",
+        avatar: photoURL || "https://i.imgur.com/ubcYxCs.jpeg",
       });
     }
   };
