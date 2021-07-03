@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import styles from "../styles/components/TopNavigationBar.module.css";
 
-function TopNavigationBar() {
+function TopNavigationBar({ user }) {
+  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setAvatar(user.avatar);
+      setName(user.name);
+    }
+  }, [user]);
+
   return (
     <div className={styles.topNavigationBar}>
       <div className={styles.wrapper}>
@@ -36,7 +47,8 @@ function TopNavigationBar() {
         <img
           className={styles.profilePicture}
           alt="profile"
-          src="https://pbs.twimg.com/media/ED-OVtiXYAA2kdF.jpg"
+          src={avatar}
+          title={`${name}`}
         />
       </div>
     </div>
