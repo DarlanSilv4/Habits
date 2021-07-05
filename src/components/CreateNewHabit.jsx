@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useHabits } from "../contexts/HabitsContext";
 import styles from "../styles/components/CreateNewHabit.module.css";
 import { addHabits } from "../database.js";
+import { database } from "../services/firebase";
+import { useAuth } from "../contexts/AuthContext";
 
 function CreateNewHabit() {
   const [name, setName] = useState("");
@@ -10,6 +12,7 @@ function CreateNewHabit() {
 
   const [invalidMessage, setInvalidMessage] = useState(null);
 
+  const { user } = useAuth();
   const { handleNewHabitModalOpen } = useHabits();
 
   const handleCheckbox = (value) => {
@@ -44,16 +47,15 @@ function CreateNewHabit() {
     return true;
   };
 
-  const createNewHabit = () => {
+  const createNewHabit = async () => {
     const newHabit = {
       name: name,
       days: daysOfTheWeek,
       schedule: schedule,
-      concluded: null,
     };
 
     if (isFormValid(newHabit)) {
-      addHabits(newHabit);
+      await database.ref(`users/${user.id}/habits`).push(newHabit);
       handleNewHabitModalOpen(false);
     }
   };
