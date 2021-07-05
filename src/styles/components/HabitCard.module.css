@@ -12,6 +12,12 @@
   width: 365px;
 }
 
+.concluded {
+  background: #79cf93;
+  box-shadow: none;
+  color: var(--white);
+}
+
 @media (min-width: 1450px) {
   .card {
     flex-grow: 1;
@@ -56,16 +62,6 @@
   width: 50%;
 }
 
-.buttonWrapper {
-  display: flex;
-  flex-direction: row;
-  width: 80px;
-}
-
-.buttonWrapper button {
-  margin: 5px;
-}
-
 .card button svg:hover {
   transition: fill 0.2s;
 }
@@ -74,6 +70,6 @@
   fill: var(--green);
 }
 
-.cancelButton svg:hover {
+.undoButton svg:hover {
   fill: var(--red);
 }
