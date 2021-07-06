@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useHabits } from "../contexts/HabitsContext";
 import styles from "../styles/components/CreateNewHabit.module.css";
-import { addHabits } from "../database.js";
 import { database } from "../services/firebase";
 import { useAuth } from "../contexts/AuthContext";
 
