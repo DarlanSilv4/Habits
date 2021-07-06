@@ -1,12 +1,10 @@
-import HabitCard from "./HabitCard.jsx";
-
 import styles from "../styles/components/HabitList.module.css";
+
+import HabitCard from "./HabitCard.jsx";
 import { useHabits } from "../contexts/HabitsContext.jsx";
-import { getHabits } from "../database.js";
 
 function HabitList() {
-  const { handleNewHabitModalOpen } = useHabits();
-  const habits = getHabits();
+  const { handleNewHabitModalOpen, habits } = useHabits();
 
   const filterHabitsForToday = () => {
     const today = new Date().getDay();
