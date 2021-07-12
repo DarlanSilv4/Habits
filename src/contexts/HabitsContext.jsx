@@ -17,7 +17,7 @@ function HabitsProvider(props) {
 
   const updateConcludedHabitsInDatabase = async (habitList) => {
     const date = new Date();
-    const today = date.getDate().toString().padStart(2, "0"); //get data in format DD
+    const today = date.getDate().toString().padStart(2, "0"); //get date in format DD
     const currentMonth = (date.getMonth() + 1).toString().padStart(2, "0"); //get month in format MM
     const currentYear = date.getFullYear();
 
@@ -71,8 +71,29 @@ function HabitsProvider(props) {
       };
     };
 
+    const loadConcludedHabits = async () => {
+      const date = new Date();
+      const today = date.getDate().toString().padStart(2, "0"); //get date in format DD
+      const currentMonth = (date.getMonth() + 1).toString().padStart(2, "0"); //get month in format MM
+      const currentYear = date.getFullYear();
+      const dbRef = database.ref(
+        `users/${user.id}/concludedHabits/${currentYear}/${currentMonth}/${today}`
+      );
+
+      dbRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        const userConcludedHabits = data ?? [];
+        setConcludedHabits(userConcludedHabits);
+      });
+
+      return () => {
+        dbRef.off("value");
+      };
+    };
+
     if (user) {
       loadAllHabits();
+      loadConcludedHabits();
     }
   }, [user]);
 
