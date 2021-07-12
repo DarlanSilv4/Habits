@@ -8,10 +8,42 @@ function HabitsProvider(props) {
   const { user } = useAuth();
 
   const [habits, setHabits] = useState([]);
+  const [concludedHabits, setConcludedHabits] = useState([]);
   const [isNewHabitModalOpen, setIsNewHabitModalOpen] = useState(false);
 
   const handleNewHabitModalOpen = () => {
     setIsNewHabitModalOpen(!isNewHabitModalOpen);
+  };
+
+  const updateConcludedHabitsInDatabase = async (habitList) => {
+    const date = new Date();
+    const today = date.getDate().toString().padStart(2, "0"); //get data in format DD
+    const currentMonth = (date.getMonth() + 1).toString().padStart(2, "0"); //get month in format MM
+    const currentYear = date.getFullYear();
+
+    const dbRef = database.ref(
+      `users/${user.id}/concludedHabits/${currentYear}/${currentMonth}`
+    );
+    await dbRef.child(today).set(habitList);
+  };
+
+  const handleCompleteHabit = (habitId) => {
+    const removeHabitById = (habitId) => {
+      return concludedHabits.filter((concludedHabitId) => {
+        return concludedHabitId !== habitId;
+      });
+    };
+
+    const isHabitConcluded = concludedHabits.includes(habitId);
+
+    if (isHabitConcluded) {
+      const updatedList = removeHabitById(habitId);
+      updateConcludedHabitsInDatabase(updatedList);
+      return;
+    }
+
+    const updatedList = concludedHabits.concat(habitId);
+    updateConcludedHabitsInDatabase(updatedList);
   };
 
   useEffect(() => {
@@ -46,7 +78,13 @@ function HabitsProvider(props) {
 
   return (
     <HabitsContext.Provider
-      value={{ handleNewHabitModalOpen, isNewHabitModalOpen, habits }}
+      value={{
+        handleNewHabitModalOpen,
+        handleCompleteHabit,
+        isNewHabitModalOpen,
+        concludedHabits,
+        habits,
+      }}
     >
       {props.children}
     </HabitsContext.Provider>
