@@ -1,10 +1,7 @@
-import { useState } from "react";
 import styles from "../styles/components/HabitCard.module.css";
 import IconSvg from "./IconSvg";
 
-function HabitCard(props) {
-  const [isConcluded, setIsConcluded] = useState(false);
-
+function HabitCard({ name, isConcluded, handleCompleteHabit }) {
   return (
     <div
       className={
@@ -12,13 +9,21 @@ function HabitCard(props) {
       }
     >
       <div className={styles.iconWrapper}>{/*Icon*/}</div>
-      <p>{props.name}</p>
+      <p>{name}</p>
       {isConcluded ? (
-        <button title="Mark as unfinished" className={styles.undoButton}>
+        <button
+          title="Mark as unfinished"
+          className={styles.undoButton}
+          onClick={handleCompleteHabit}
+        >
           <IconSvg icon="undo" height="32" width="32" color="#FFFFFF" />
         </button>
       ) : (
-        <button title="Mark as finish" className={styles.checkButton}>
+        <button
+          title="Mark as finish"
+          className={styles.checkButton}
+          onClick={handleCompleteHabit}
+        >
           <IconSvg icon="check" height="32" width="32" color="#666666" />
         </button>
       )}

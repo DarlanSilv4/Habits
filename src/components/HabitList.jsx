@@ -4,7 +4,12 @@ import HabitCard from "./HabitCard.jsx";
 import { useHabits } from "../contexts/HabitsContext.jsx";
 
 function HabitList() {
-  const { handleNewHabitModalOpen, habits } = useHabits();
+  const {
+    handleNewHabitModalOpen,
+    handleCompleteHabit,
+    concludedHabits,
+    habits,
+  } = useHabits();
 
   const filterHabitsForToday = () => {
     const today = new Date().getDay();
@@ -25,6 +30,10 @@ function HabitList() {
     const todayHabits = habits.filter((habit) => isHabitForToday(habit));
 
     return todayHabits;
+  };
+
+  const isHabitConcluded = (habitId) => {
+    return concludedHabits.includes(habitId);
   };
 
   const sortHabitsByDaytime = () => {
@@ -61,7 +70,14 @@ function HabitList() {
     const cardList = [];
 
     habits.map((habit, index) =>
-      cardList.push(<HabitCard key={index} name={habit.name} />)
+      cardList.push(
+        <HabitCard
+          key={index}
+          name={habit.name}
+          isConcluded={isHabitConcluded(habit.id)}
+          handleCompleteHabit={() => handleCompleteHabit(habit.id)}
+        />
+      )
     );
 
     return cardList;
