@@ -1,9 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+
+import { database } from "../services/firebase";
+
 import styles from "../styles/components/StreakMap.module.css";
+
+import Calendar from "../components/Calendar";
 
 function StreakMap() {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
+
+  const [habitsConcludedInThisMonth, setHabitsConcludedInThisMonth] = useState(
+    []
+  );
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const loadHabitsConcludedInThisMonth = async () => {
+      const yearString = year.toString();
+      const monthString = (month + 1).toString().padStart(2, "0"); //convert month in format MM
+
+      const dbRef = database.ref(
+        `users/${user.id}/concludedHabits/${yearString}/${monthString}/`
+      );
+
+      dbRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        const userConcludedHabits = data ?? [];
+        setHabitsConcludedInThisMonth(Object.keys(userConcludedHabits));
+      });
+
+      return () => {
+        dbRef.off("value");
+      };
+    };
+
+    if (user) {
+      loadHabitsConcludedInThisMonth();
+    }
+  }, [user, year, month]);
 
   const months = [
     "January",
@@ -19,75 +56,6 @@ function StreakMap() {
     "November",
     "December",
   ];
-
-  const isToday = (day) => {
-    const date = new Date();
-    const today = date.getDate();
-    const currentMonth = date.getMonth();
-    const currentYear = date.getFullYear();
-
-    return day === today && month === currentMonth && year === currentYear;
-  };
-
-  const createListDays = () => {
-    const days = [];
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const firstWeekday = firstDay.getDay();
-
-    //create empty items if the first month day is not on the first week day
-    for (let i = 1; i <= firstWeekday; i++) {
-      days.push(
-        <td className={styles.day} key={i * -1}>
-          {" "}
-        </td>
-      );
-    }
-
-    for (let day = 1; day <= lastDay.getDate(); day++) {
-      isToday(day)
-        ? days.push(
-            <td className={`${styles.day} ${styles.today}`} key={day}>
-              {day}
-            </td>
-          )
-        : days.push(
-            <td className={styles.day} key={day}>
-              {day}
-            </td>
-          );
-    }
-
-    return days;
-  };
-
-  const sliceInWeeks = (days) => {
-    const weeks = [];
-    const slice = 7;
-
-    for (let i = 0; i < days.length; i = i + slice) {
-      weeks.push(days.slice(i, i + slice));
-    }
-
-    return weeks;
-  };
-
-  const createListWeek = () => {
-    const days = createListDays();
-    const weeks = sliceInWeeks(days);
-
-    const listWeek = [];
-
-    weeks.forEach((week, index) => {
-      listWeek.push(
-        <tr className={styles.week} key={index}>
-          {week}
-        </tr>
-      );
-    });
-
-    return listWeek;
-  };
 
   const handlePreviousMonth = () => {
     const previousDate = new Date(year, month - 1);
@@ -125,21 +93,11 @@ function StreakMap() {
           </div>
         </header>
 
-        <div className={styles.calendar}>
-          <div className={styles.weekdays}>
-            <p>Sun</p>
-            <p>Mon</p>
-            <p>Tue</p>
-            <p>Wed</p>
-            <p>Thu</p>
-            <p>Fri</p>
-            <p>Sat</p>
-          </div>
-
-          <table>
-            <tbody>{createListWeek()}</tbody>
-          </table>
-        </div>
+        <Calendar
+          year={year}
+          month={month}
+          habitsConcludedInThisMonth={habitsConcludedInThisMonth}
+        />
       </section>
     </div>
   );
