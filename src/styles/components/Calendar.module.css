@@ -1,0 +1,47 @@
+.calendar {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.weekdays {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.weekdays p {
+  width: calc(100% / 7);
+}
+
+.dayContainer {
+  display: grid;
+  margin-top: 20px;
+  align-content: center;
+  justify-content: center;
+  grid-template-columns: repeat(7, calc(100% / 7));
+}
+
+.day {
+  padding: 5px;
+  width: 2rem;
+  justify-self: center;
+  text-align: center;
+}
+
+.today {
+  background-color: var(--text);
+  border-radius: 100%;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.completedDay {
+  background-color: var(--green);
+  border-radius: 15%;
+  color: var(--white);
+  font-weight: 600;
+  width: 100%;
+}
