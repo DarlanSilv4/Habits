@@ -4,6 +4,7 @@ import App from "./App";
 
 import AuthProvider from "./contexts/AuthContext";
 import HabitsProvider from "./contexts/HabitsContext";
+import StreakProvider from "./contexts/StreakContext";
 
 import "./services/firebase";
 
@@ -11,7 +12,9 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <HabitsProvider>
-        <App />
+        <StreakProvider>
+          <App />
+        </StreakProvider>
       </HabitsProvider>
     </AuthProvider>
   </React.StrictMode>,
