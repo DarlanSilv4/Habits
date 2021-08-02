@@ -18,7 +18,7 @@ function Calendar({ year, month, habitsConcludedInThisMonth }) {
     };
 
     const thereHabitsConcludedToday = (day) => {
-      const stringDay = day.toString();
+      const stringDay = day.toString().padStart(2, "0"); //convert int day to string day in format DD
 
       if (habitsConcludedInThisMonth.length > 0) {
         if (habitsConcludedInThisMonth.includes(stringDay))
