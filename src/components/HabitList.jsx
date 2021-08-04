@@ -2,6 +2,7 @@ import styles from "../styles/components/HabitList.module.css";
 
 import HabitCard from "./HabitCard.jsx";
 import { useHabits } from "../contexts/HabitsContext.jsx";
+import { useStreak } from "../contexts/StreakContext";
 
 function HabitList() {
   const {
@@ -10,6 +11,8 @@ function HabitList() {
     concludedHabits,
     habits,
   } = useHabits();
+
+  const { handleStreak } = useStreak();
 
   const filterHabitsForToday = () => {
     const today = new Date().getDay();
@@ -76,6 +79,7 @@ function HabitList() {
           name={habit.name}
           isConcluded={isHabitConcluded(habit.id)}
           handleCompleteHabit={() => handleCompleteHabit(habit.id)}
+          handleStreak={handleStreak}
         />
       )
     );
