@@ -1,7 +1,7 @@
 import styles from "../styles/components/HabitCard.module.css";
 import IconSvg from "./IconSvg";
 
-function HabitCard({ name, isConcluded, handleCompleteHabit }) {
+function HabitCard({ name, isConcluded, handleCompleteHabit, handleStreak }) {
   return (
     <div
       className={
@@ -14,7 +14,10 @@ function HabitCard({ name, isConcluded, handleCompleteHabit }) {
         <button
           title="Mark as unfinished"
           className={styles.undoButton}
-          onClick={handleCompleteHabit}
+          onClick={() => {
+            handleStreak.undoUpdateStreak();
+            handleCompleteHabit();
+          }}
         >
           <IconSvg icon="undo" height="32" width="32" color="#FFFFFF" />
         </button>
@@ -22,7 +25,10 @@ function HabitCard({ name, isConcluded, handleCompleteHabit }) {
         <button
           title="Mark as finish"
           className={styles.checkButton}
-          onClick={handleCompleteHabit}
+          onClick={() => {
+            handleStreak.updateStreak();
+            handleCompleteHabit();
+          }}
         >
           <IconSvg icon="check" height="32" width="32" color="#666666" />
         </button>
