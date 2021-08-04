@@ -6,6 +6,7 @@ import { database } from "../services/firebase";
 import styles from "../styles/components/StreakMap.module.css";
 
 import Calendar from "../components/Calendar";
+import { useStreak } from "../contexts/StreakContext";
 
 function StreakMap() {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -16,6 +17,7 @@ function StreakMap() {
   );
 
   const { user } = useAuth();
+  const { streakCount } = useStreak();
 
   useEffect(() => {
     const loadHabitsConcludedInThisMonth = async () => {
@@ -88,7 +90,7 @@ function StreakMap() {
           </div>
 
           <div className={styles.daysWrapper}>
-            <p>0</p>
+            <p>{streakCount}</p>
             <p>Days</p>
           </div>
         </header>
