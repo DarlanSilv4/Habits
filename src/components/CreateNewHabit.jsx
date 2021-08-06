@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useHabits } from "../contexts/HabitsContext";
 import styles from "../styles/components/CreateNewHabit.module.css";
 import { database } from "../services/firebase";
 import { useAuth } from "../contexts/AuthContext";
+import { useModals } from "../contexts/ModalsContext";
 
 function CreateNewHabit() {
   const [name, setName] = useState("");
@@ -12,7 +12,7 @@ function CreateNewHabit() {
   const [invalidMessage, setInvalidMessage] = useState(null);
 
   const { user } = useAuth();
-  const { handleNewHabitModalOpen } = useHabits();
+  const { handleNewHabitModalOpen } = useModals();
 
   const handleCheckbox = (value) => {
     const daysChecked = [].concat(daysOfTheWeek);
