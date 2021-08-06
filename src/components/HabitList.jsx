@@ -3,14 +3,12 @@ import styles from "../styles/components/HabitList.module.css";
 import HabitCard from "./HabitCard.jsx";
 import { useHabits } from "../contexts/HabitsContext.jsx";
 import { useStreak } from "../contexts/StreakContext";
+import { useModals } from "../contexts/ModalsContext";
 
 function HabitList() {
-  const {
-    handleNewHabitModalOpen,
-    handleCompleteHabit,
-    concludedHabits,
-    habits,
-  } = useHabits();
+  const { handleCompleteHabit, concludedHabits, habits } = useHabits();
+
+  const { handleNewHabitModalOpen } = useModals();
 
   const { handleStreak } = useStreak();
 
