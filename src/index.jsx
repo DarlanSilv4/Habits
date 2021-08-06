@@ -5,6 +5,7 @@ import App from "./App";
 import AuthProvider from "./contexts/AuthContext";
 import HabitsProvider from "./contexts/HabitsContext";
 import StreakProvider from "./contexts/StreakContext";
+import ModalsProvider from "./contexts/ModalsContext";
 
 import "./services/firebase";
 
@@ -13,7 +14,9 @@ ReactDOM.render(
     <AuthProvider>
       <HabitsProvider>
         <StreakProvider>
-          <App />
+          <ModalsProvider>
+            <App />
+          </ModalsProvider>
         </StreakProvider>
       </HabitsProvider>
     </AuthProvider>
