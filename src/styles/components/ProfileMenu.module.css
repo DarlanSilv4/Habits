@@ -41,3 +41,9 @@
   height: 35px;
   width: 130px;
 }
+
+.profileMenuWrapper button:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transition: all 0.2s;
+}
