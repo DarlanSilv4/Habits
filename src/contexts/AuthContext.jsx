@@ -38,8 +38,12 @@ function AuthProvider(props) {
     }
   };
 
+  const signOut = async () => {
+    auth.signOut();
+  };
+
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
       {props.children}
     </AuthContext.Provider>
   );
