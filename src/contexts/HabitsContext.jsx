@@ -9,11 +9,6 @@ function HabitsProvider(props) {
 
   const [habits, setHabits] = useState([]);
   const [concludedHabits, setConcludedHabits] = useState([]);
-  const [isNewHabitModalOpen, setIsNewHabitModalOpen] = useState(false);
-
-  const handleNewHabitModalOpen = () => {
-    setIsNewHabitModalOpen(!isNewHabitModalOpen);
-  };
 
   const updateConcludedHabitsInDatabase = async (habitList) => {
     const date = new Date();
@@ -100,9 +95,7 @@ function HabitsProvider(props) {
   return (
     <HabitsContext.Provider
       value={{
-        handleNewHabitModalOpen,
         handleCompleteHabit,
-        isNewHabitModalOpen,
         concludedHabits,
         habits,
       }}
