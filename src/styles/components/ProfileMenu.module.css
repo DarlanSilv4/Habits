@@ -1,3 +1,8 @@
+.overlay {
+  height: 100%;
+  width: 100%;
+}
+
 .profileMenuWrapper {
   align-items: center;
   background-color: white;
