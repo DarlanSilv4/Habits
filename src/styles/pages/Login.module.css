@@ -1,10 +1,10 @@
 .login {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   background-color: var(--blue-dark);
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+  width: 100%;
 }
 
 .login h1 {
@@ -16,40 +16,40 @@
 }
 
 .login header {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 50%;
   justify-content: center;
   width: 100%;
-  height: 50%;
 }
 
 .login header div {
-  height: 50%;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 50%;
   justify-content: center;
 }
 
 .login header div img {
-  width: 70%;
   height: 70%;
+  width: 70%;
 }
 
 .login button {
-  background-color: var(--white);
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 5px;
-  flex-direction: row;
   align-items: center;
-  width: 20%;
-  min-width: 170px;
-  height: 50px;
+  background-color: var(--white);
   border-radius: 5px;
   box-shadow: -5px 5px 5px rgba(53, 53, 53, 0.5);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 50px;
+  justify-content: center;
+  min-width: 170px;
+  padding: 5px;
+  width: 20%;
 }
 
 .login button p {
