@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useModals } from "../contexts/ModalsContext";
 import styles from "../styles/components/TopNavigationBar.module.css";
 
 function TopNavigationBar({ user }) {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
+
+  const { handleProfileMenuOpen } = useModals();
 
   useEffect(() => {
     if (user) {
@@ -44,12 +47,14 @@ function TopNavigationBar({ user }) {
         <button title="settings" className={styles.topbarButton}>
           <img src="./icons/settings.svg" alt="settings" />
         </button>
-        <img
-          className={styles.profilePicture}
-          alt="profile"
-          src={avatar}
-          title={`${name}`}
-        />
+        <button onClick={handleProfileMenuOpen}>
+          <img
+            className={styles.profilePicture}
+            alt="profile"
+            src={avatar}
+            title={`${name}`}
+          />
+        </button>
       </div>
     </div>
   );
