@@ -5,6 +5,7 @@ import StreakMap from "../components/StreakMap";
 import ProfileMenu from "../components/ProfileMenu";
 import { useAuth } from "../contexts/AuthContext";
 import { useModals } from "../contexts/ModalsContext";
+import SideNavigationBar from "../components/SideNavigationBar";
 
 function Home() {
   const { isNewHabitModalOpen, isProfileMenuOpen } = useModals();
@@ -14,6 +15,7 @@ function Home() {
     <>
       {isNewHabitModalOpen ? <CreateNewHabit /> : <></>}
       {isProfileMenuOpen ? <ProfileMenu /> : <></>}
+      <SideNavigationBar />
       <TopNavigationBar user={user} />
       <main className="container">
         <HabitList />
