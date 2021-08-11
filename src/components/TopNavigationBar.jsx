@@ -6,7 +6,7 @@ function TopNavigationBar({ user }) {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
 
-  const { handleProfileMenuOpen } = useModals();
+  const { handleProfileMenuOpen, handleSideBarOpen } = useModals();
 
   useEffect(() => {
     if (user) {
@@ -18,7 +18,11 @@ function TopNavigationBar({ user }) {
   return (
     <div className={styles.topNavigationBar}>
       <div className={styles.wrapper}>
-        <button title="menu" className={styles.topbarButton}>
+        <button
+          title="menu"
+          onClick={handleSideBarOpen}
+          className={styles.topbarButton}
+        >
           <img src="./icons/menu.svg" alt="menu" />
         </button>
 
