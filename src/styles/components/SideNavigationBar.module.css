@@ -1,0 +1,72 @@
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.sideNavigationBar {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  padding: 20px;
+  width: 270px;
+}
+
+.sideNavigationBar header {
+  align-items: center;
+  display: flex;
+  gap: 40%;
+}
+
+.sideNavigationBar header .logo {
+  align-items: center;
+  display: flex;
+  gap: 5%;
+}
+
+.sideNavigationBar header .logo img {
+  width: 36px;
+}
+
+.sideNavigationBar header button img:hover {
+  filter: brightness(25%);
+  transition: filter 0.5s;
+}
+
+.sideNavigationBar .line {
+  background-color: var(--gray-line);
+  height: 1px;
+  width: 100%;
+}
+
+.sideNavigationBar section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sideNavigationBar section * {
+  align-items: center;
+  display: flex;
+  gap: 5%;
+}
+
+.sideNavigationBar section *:hover {
+  filter: brightness(65%);
+  font-weight: bold;
+  transition: filter 0.5s;
+}
+
+.sideNavigationBar footer {
+  align-self: center;
+  bottom: 20px;
+  position: absolute;
+}
+
+.sideNavigationBar footer a {
+  font-weight: bold;
+}
