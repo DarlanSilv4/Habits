@@ -5,6 +5,7 @@ export const ModalsContext = React.createContext({});
 function ModalsProvider(props) {
   const [isNewHabitModalOpen, setIsNewHabitModalOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   const handleNewHabitModalOpen = () => {
     setIsNewHabitModalOpen(!isNewHabitModalOpen);
@@ -14,13 +15,19 @@ function ModalsProvider(props) {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
 
+  const handleSideBarOpen = () => {
+    setIsSideBarOpen(!isSideBarOpen);
+  };
+
   return (
     <ModalsContext.Provider
       value={{
         isNewHabitModalOpen,
         isProfileMenuOpen,
+        isSideBarOpen,
         handleNewHabitModalOpen,
         handleProfileMenuOpen,
+        handleSideBarOpen,
       }}
     >
       {props.children}
