@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
+import { useModals } from "../contexts/ModalsContext";
 import styles from "../styles/components/SideNavigationBar.module.css";
 
 function SideNavigationBar() {
+  const { isSideBarOpen, handleSideBarOpen } = useModals();
+
+  const closeSideBarClickingOut = (event) => {
+    if (event.target.id === "sideBar_overlay") {
+      handleSideBarOpen();
+    }
+  };
+
   return (
-    <div className={styles.overlay}>
+    <div
+      id="sideBar_overlay"
+      onClick={closeSideBarClickingOut}
+      className={
+        isSideBarOpen ? styles.overlay : styles.sideNavigationBarHidden
+      }
+    >
       <div className={styles.sideNavigationBar}>
         <header>
-          <button>
+          <button onClick={handleSideBarOpen}>
             <img src="./icons/menu_dark.svg" alt="menu icon" />
           </button>
           <Link to={"/"} className={styles.logo}>
