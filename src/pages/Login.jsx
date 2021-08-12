@@ -5,7 +5,6 @@ import PageLoader from "../components/PageLoader";
 import { auth } from "../services/firebase";
 import { useAuth } from "../contexts/AuthContext";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Redirect } from "react-router-dom";
 
 export function Login() {
   const { signInWithGoogle } = useAuth();
@@ -20,7 +19,7 @@ export function Login() {
     return <PageLoader />;
   }
   if (user) {
-    return <Redirect to={"/app"} />;
+    window.location.pathname = "/app";
   }
 
   return (
