@@ -48,9 +48,10 @@ function TopNavigationBar({ user }) {
         >
           <img src="./icons/search.svg" alt="search" />
         </button>
+        {/* 
         <button title="settings" className={styles.topbarButton}>
           <img src="./icons/settings.svg" alt="settings" />
-        </button>
+        </button> */}
         <button onClick={handleProfileMenuOpen}>
           <img
             className={styles.profilePicture}
