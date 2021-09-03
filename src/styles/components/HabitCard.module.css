@@ -66,12 +66,25 @@
   width: 50%;
 }
 
+.card .buttonGroup {
+  display: flex;
+  gap: 20px;
+}
+
 .card button svg:hover {
   transition: fill 0.2s;
 }
 
 .checkButton svg:hover {
   fill: var(--green);
+}
+
+.editButton svg:hover {
+  fill: var(--blue);
+}
+
+.deleteButton svg:hover {
+  fill: var(--red);
 }
 
 .undoButton svg:hover {
