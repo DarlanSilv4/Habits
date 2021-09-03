@@ -1,13 +1,22 @@
 import styles from "../styles/components/HabitCard.module.css";
 import IconSvg from "./IconSvg";
+import cx from "classnames";
 
-function HabitCard({ name, isConcluded, handleCompleteHabit, handleStreak }) {
+function HabitCard({
+  name,
+  isConcluded,
+  isFullWidth,
+  handleCompleteHabit,
+  handleStreak,
+}) {
+  const habitCardStyle = cx(
+    styles.card,
+    { [styles.concluded]: isConcluded },
+    { [styles.cardFullWidth]: isFullWidth }
+  );
+
   return (
-    <div
-      className={
-        isConcluded ? `${styles.card} ${styles.concluded}` : styles.card
-      }
-    >
+    <div className={habitCardStyle}>
       <div className={styles.iconWrapper}>{/*Icon*/}</div>
       <p>{name}</p>
       {isConcluded ? (
