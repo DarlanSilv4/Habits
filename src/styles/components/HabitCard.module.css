@@ -43,6 +43,10 @@
   }
 }
 
+.cardFullWidth {
+  width: 100%;
+}
+
 .iconWrapper {
   padding: 2%;
   background-color: var(--white);
