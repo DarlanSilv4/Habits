@@ -41,6 +41,11 @@ function HabitsProvider(props) {
     updateConcludedHabitsInDatabase(updatedList);
   };
 
+  const handleDeleteHabit = async (habitId) => {
+    const dbRef = database.ref(`users/${user.id}/habits`);
+    await dbRef.child(habitId).remove();
+  };
+
   useEffect(() => {
     const loadAllHabits = async () => {
       const dbRef = database.ref(`users/${user.id}/habits`);
@@ -96,6 +101,7 @@ function HabitsProvider(props) {
     <HabitsContext.Provider
       value={{
         handleCompleteHabit,
+        handleDeleteHabit,
         concludedHabits,
         habits,
       }}
