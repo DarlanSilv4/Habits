@@ -4,13 +4,20 @@ import HabitCard from "./HabitCard.jsx";
 import { useHabits } from "../contexts/HabitsContext.jsx";
 import { useStreak } from "../contexts/StreakContext";
 import { useModals } from "../contexts/ModalsContext";
+import { Route } from "react-router-dom";
 
 function HabitList() {
-  const { handleCompleteHabit, concludedHabits, habits } = useHabits();
+  const { handleCompleteHabit, handleDeleteHabit, concludedHabits, habits } =
+    useHabits();
 
   const { handleNewHabitModalOpen } = useModals();
 
   const { handleStreak } = useStreak();
+
+  const title = () => {
+    if (window.location.pathname === "/app") return "Today";
+    return "Manage Your Habits";
+  };
 
   const filterHabitsForToday = () => {
     const today = new Date().getDay();
@@ -67,7 +74,7 @@ function HabitList() {
     };
   };
 
-  const setupHabitCards = (habits) => {
+  const setupHabitCards = (habits, isFullWidth = false) => {
     const cardList = [];
 
     habits.map((habit, index) =>
@@ -76,6 +83,7 @@ function HabitList() {
           key={index}
           name={habit.name}
           isConcluded={isHabitConcluded(habit.id)}
+          isFullWidth={isFullWidth}
           handleCompleteHabit={() => handleCompleteHabit(habit.id)}
           handleStreak={handleStreak}
         />
@@ -111,10 +119,25 @@ function HabitList() {
     return habitsInDivisors;
   };
 
+  const showAllHabits = () => {
+    const allHabits = [];
+    const habitsCards = setupHabitCards(habits, true);
+
+    allHabits.push(
+      <div className={styles.dayTimeWrapper}>
+        <h3 className={styles.dayTime}>All Habits</h3>
+        <div className={styles.line} />
+        <div className={styles.habits}>{habitsCards}</div>
+      </div>
+    );
+
+    return allHabits;
+  };
+
   return (
     <div className={styles.habitList}>
       <header>
-        <h2 className={styles.title}>Today</h2>
+        <h2 className={styles.title}>{title()}</h2>
         <button
           className={styles.newHabitButton}
           onClick={() => handleNewHabitModalOpen()}
@@ -123,7 +146,12 @@ function HabitList() {
           <p>New Habit</p>
         </button>
       </header>
-      <div className={styles.habits}>{setupHabitsInDivisors()}</div>
+      <Route path="/app">
+        <div className={styles.habits}>{setupHabitsInDivisors()}</div>
+      </Route>
+      <Route path="/habits">
+        <div className={styles.habits}>{showAllHabits()}</div>
+      </Route>
     </div>
   );
 }
