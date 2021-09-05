@@ -85,6 +85,7 @@ function HabitList() {
           isConcluded={isHabitConcluded(habit.id)}
           isFullWidth={isFullWidth}
           handleCompleteHabit={() => handleCompleteHabit(habit.id)}
+          handleDeleteHabit={() => handleDeleteHabit(habit.id)}
           handleStreak={handleStreak}
         />
       )

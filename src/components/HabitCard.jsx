@@ -8,6 +8,7 @@ function HabitCard({
   isConcluded,
   isFullWidth,
   handleCompleteHabit,
+  handleDeleteHabit,
   handleStreak,
 }) {
   const habitCardStyle = cx(
@@ -53,7 +54,9 @@ function HabitCard({
           <button
             title="Delete"
             className={styles.deleteButton}
-            onClick={() => {}}
+            onClick={() => {
+              handleDeleteHabit();
+            }}
           >
             <IconSvg icon="delete" height="28" width="28" color="#666666" />
           </button>
