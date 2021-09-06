@@ -30,6 +30,10 @@ function CreateNewHabit() {
     setDaysOfTheWeek(daysChecked);
   };
 
+  const isDayChecked = (value) => {
+    return daysOfTheWeek.includes(value);
+  };
+
   const isFormValid = ({ name, days, schedule }) => {
     if (name.length === 0) {
       setInvalidMessage("Name is required");
@@ -102,6 +106,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("sun")}
                     onChange={() => {
                       handleCheckbox("sun");
                     }}
@@ -112,6 +117,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("mon")}
                     onChange={() => {
                       handleCheckbox("mon");
                     }}
@@ -122,6 +128,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("tue")}
                     onChange={() => {
                       handleCheckbox("tue");
                     }}
@@ -132,6 +139,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("wed")}
                     onChange={() => {
                       handleCheckbox("wed");
                     }}
@@ -142,6 +150,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("thu")}
                     onChange={() => {
                       handleCheckbox("thu");
                     }}
@@ -152,6 +161,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("fri")}
                     onChange={() => {
                       handleCheckbox("fri");
                     }}
@@ -162,6 +172,7 @@ function CreateNewHabit() {
                 <label>
                   <input
                     type="checkbox"
+                    checked={isDayChecked("sat")}
                     onChange={() => {
                       handleCheckbox("sat");
                     }}
