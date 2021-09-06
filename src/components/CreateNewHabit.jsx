@@ -92,6 +92,7 @@ function CreateNewHabit() {
             <label>
               <p>Name</p>
               <input
+                value={name}
                 placeholder="Ex: Reading to relax"
                 onChange={(event) => setName(event.target.value)}
               />
