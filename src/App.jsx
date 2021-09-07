@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import PrivateRoute from "./components/PrivateRoute";
 
 import "./styles/global.css";
+import Habits from "./pages/Habits";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <Route path="/" component={Login} exact />
         <PrivateRoute path="/app" component={Home} exact />
+        <PrivateRoute path="/habits" component={Habits} exact />
       </Switch>
     </BrowserRouter>
   );
