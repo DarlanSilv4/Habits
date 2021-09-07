@@ -24,18 +24,18 @@ function SideNavigationBar() {
           <button onClick={handleSideBarOpen}>
             <img src="./icons/menu_dark.svg" alt="menu icon" />
           </button>
-          <Link to={"/"} className={styles.logo}>
+          <Link to={"/app"} className={styles.logo}>
             <img src="./icons/habit_dark_logo.svg" alt="logo" />
             <h2>Habits</h2>
           </Link>
         </header>
         <div className={styles.line}></div>
         <section>
-          <Link to={"/"}>
+          <Link to={"/app"}>
             <img src="./icons/home_black.svg" alt="home" />
             <p>Home</p>
           </Link>
-          <Link to={"/"}>
+          <Link to={"/habits"}>
             <img src="./icons/list_black.svg" alt="habit list" />
             <p>All Habits</p>
           </Link>
